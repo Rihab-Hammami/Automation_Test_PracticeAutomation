@@ -27,7 +27,20 @@ public class BrokenLinks {
   BrokenLinkPage brokenLinksPage;
   
   @Before
-  public void setUp() throws Exception {
+	public void setUp() throws Exception {
+	  WebDriverManager.firefoxdriver().setup();
+		
+	    FirefoxOptions options = new FirefoxOptions();
+	    options.addArguments("--headless");
+	    options.addArguments("--start-maximized");
+	    options.addArguments("--disable-notifications");
+		options.addArguments("--disable-gpu");
+		driver = new FirefoxDriver(options);
+	  brokenLinksPage=new BrokenLinkPage(driver);
+	  baseUrl = "https://practice-automation.com/";
+	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	  js = (JavascriptExecutor) driver;}
+/*  public void setUp() throws Exception {
 	  System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Java\\chromedriver.exe");
 	  ChromeOptions options = new ChromeOptions();
 	  options.addArguments("start-maximized");
@@ -37,7 +50,7 @@ public class BrokenLinks {
 	  baseUrl = "https://practice-automation.com/";
 	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	  js = (JavascriptExecutor) driver;
-	  }
+	  }*/
 
    /* System.setProperty("webdriver.chrome.driver", "");
     driver = new ChromeDriver();
