@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import com.example.practiceautomation.po.ClickEventsPage;
 
 import org.apache.commons.io.FileUtils;
