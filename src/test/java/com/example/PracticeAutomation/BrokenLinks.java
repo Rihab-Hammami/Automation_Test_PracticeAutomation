@@ -28,19 +28,23 @@ public class BrokenLinks {
   BrokenLinkPage brokenLinksPage;
   
   @Before
-	public void setUp() throws Exception {
-	  WebDriverManager.firefoxdriver().setup();
+	 public void setUp() throws Exception {
+	  System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Java\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("start-maximized");
+		options.addArguments("--remote-allow-origins=*");
 		
-	    FirefoxOptions options = new FirefoxOptions();
-	    options.addArguments("--headless");
-	    options.addArguments("--start-maximized");
-	    options.addArguments("--disable-notifications");
-		options.addArguments("--disable-gpu");
-		driver = new FirefoxDriver(options);
-	  brokenLinksPage=new BrokenLinkPage(driver);
-	  baseUrl = "https://practice-automation.com/";
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  js = (JavascriptExecutor) driver;}
+		options.addArguments("--headless=new");  // Utiliser le nouveau mode headless
+		options.addArguments("--disable-gpu");   // Désactiver l'accélération GPU
+		options.addArguments("--window-size=1920,1080"); // Définir une résolution
+		options.addArguments("--disable-software-rasterizer"); // Désactiver le rendu logiciel
+		driver = new ChromeDriver(options);
+		baseUrl = "https://practice-automation.com/";
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		js = (JavascriptExecutor) driver;
+		brokenLinksPage=new BrokenLinkPage(driver);
+	 
+	  }
 /*  public void setUp() throws Exception {
 	  System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Java\\chromedriver.exe");
 	  ChromeOptions options = new ChromeOptions();
